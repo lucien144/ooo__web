@@ -25,7 +25,7 @@ const theme = useThemeStore()
         place, without the spreadsheets and back-and-forth.
       </p>
       <a
-        href="https://ooo.app"
+        href="https://app.heyiam.ooo"
         class="mt-8 inline-block rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
       >
         Open the app
