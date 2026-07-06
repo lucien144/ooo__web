@@ -1,0 +1,164 @@
+/* ──────────────────────────────────────────────────────────────────────
+   OOO design theme — portable export for the marketing/presentation site.
+
+   Self-contained: the warm "paper" identity (cream + ink, emerald primary),
+   the design tokens, and the signature "sticker" surfaces. Framework-agnostic
+   CSS — drop it into any Tailwind 4 project (Vite + Vue, Astro, plain HTML).
+
+   Usage:
+     1. Tailwind 4 in the new repo (Vite plugin or PostCSS).
+     2. Import this file once, e.g. in src/main.ts:  import './theme.css'
+        (it already does @import "tailwindcss").
+     3. Add the two web fonts (see exports/README.md) to index.html.
+
+   The `@theme inline` block wires the tokens to Tailwind utilities, so
+   bg-primary, text-muted-foreground, border-border, rounded-lg, etc. all
+   work out of the box. Dark mode toggles by adding `.dark` to <html>.
+   ────────────────────────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Light = cream paper + ink. */
+:root {
+  --background: oklch(0.969 0.013 91);
+  --foreground: oklch(0.27 0.018 65);
+  --card: oklch(0.992 0.008 91);
+  --card-foreground: oklch(0.27 0.018 65);
+  --popover: oklch(0.992 0.008 91);
+  --popover-foreground: oklch(0.27 0.018 65);
+  --primary: oklch(0.62 0.15 162);
+  --primary-foreground: oklch(0.99 0.01 95);
+  --secondary: oklch(0.94 0.014 91);
+  --secondary-foreground: oklch(0.27 0.018 65);
+  --muted: oklch(0.94 0.014 91);
+  --muted-foreground: oklch(0.52 0.02 72);
+  --accent: oklch(0.94 0.014 91);
+  --accent-foreground: oklch(0.27 0.018 65);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.86 0.016 84);
+  --input: oklch(0.86 0.016 84);
+  --ring: oklch(0.62 0.15 162);
+  /* ink: borders + offset shadows for the "sticker" surfaces */
+  --ink: oklch(0.27 0.018 65);
+  --chart-1: oklch(0.62 0.15 162);
+  --chart-2: oklch(0.646 0.222 41.116);
+  --chart-3: oklch(0.828 0.189 84.429);
+  --chart-4: oklch(0.6 0.118 184.704);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+}
+
+/* Dark = warm espresso (not slate). */
+.dark {
+  --background: oklch(0.205 0.012 66);
+  --foreground: oklch(0.93 0.012 88);
+  --card: oklch(0.24 0.013 66);
+  --card-foreground: oklch(0.93 0.012 88);
+  --popover: oklch(0.24 0.013 66);
+  --popover-foreground: oklch(0.93 0.012 88);
+  --primary: oklch(0.72 0.15 162);
+  --primary-foreground: oklch(0.2 0.01 66);
+  --secondary: oklch(0.28 0.013 66);
+  --secondary-foreground: oklch(0.93 0.012 88);
+  --muted: oklch(0.28 0.013 66);
+  --muted-foreground: oklch(0.72 0.014 82);
+  --accent: oklch(0.28 0.013 66);
+  --accent-foreground: oklch(0.93 0.012 88);
+  --destructive: oklch(0.55 0.2 25.5);
+  --destructive-foreground: oklch(0.97 0.01 90);
+  --border: oklch(0.33 0.013 66);
+  --input: oklch(0.33 0.013 66);
+  --ring: oklch(0.72 0.15 162);
+  --ink: oklch(0.86 0.014 86);
+  --chart-1: oklch(0.72 0.15 162);
+  --chart-2: oklch(0.646 0.222 41.116);
+  --chart-3: oklch(0.828 0.189 84.429);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  /* "Sticker" surface — ink border + hard offset shadow. The signature OOO
+     look. Use on hero/primary panels and feature cards. */
+  .sticker-card {
+    border: 2px solid var(--ink);
+    border-radius: 1rem;
+    background-color: var(--card);
+    box-shadow: 4px 4px 0 0 var(--ink);
+  }
+
+  /* Lightly-bounded section container for calmer, denser sections. */
+  .panel {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background-color: var(--card);
+    box-shadow: 0 1px 2px 0 oklch(0 0 0 / 0.04);
+    padding: 1.5rem;
+  }
+
+  /* Long-form prose rhythm (about / legal / blog). */
+  .typography {
+    h2 {
+      @apply mb-6;
+    }
+
+    p {
+      @apply mb-4;
+    }
+
+    ul {
+      @apply ps-8 mb-4 list-disc;
+    }
+  }
+}
