@@ -11,7 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
-      const stored = localStorage.getItem('ooo-theme')
+      // Pre-paint theme resolution: explicit choice wins, else system preference.
+      // localStorage can throw in privacy modes — fall back to system preference.
+      let stored = null
+      try { stored = localStorage.getItem('ooo-theme') } catch {}
       document.documentElement.classList.toggle(
         'dark',
         stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches,

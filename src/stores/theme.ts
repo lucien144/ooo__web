@@ -10,7 +10,12 @@ export const useThemeStore = defineStore('theme', () => {
   function toggle() {
     isDark.value = !isDark.value
     document.documentElement.classList.toggle('dark', isDark.value)
-    localStorage.setItem(STORAGE_KEY, isDark.value ? 'dark' : 'light')
+    // localStorage can throw in privacy modes; the toggle still works this session.
+    try {
+      localStorage.setItem(STORAGE_KEY, isDark.value ? 'dark' : 'light')
+    } catch {
+      // ignore — preference just won't persist
+    }
   }
 
   return { isDark, toggle }
