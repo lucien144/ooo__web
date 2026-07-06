@@ -1,9 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+</script>
 
 <template>
-    <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <ThemeToggle />
+  <RouterView />
 </template>
-
-<style scoped></style>
