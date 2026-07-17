@@ -1,9 +1,22 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import ThemeToggle from '@/components/ThemeToggle.vue'
+import SiteHeader from '@/components/SiteHeader.vue'
+import SiteFooter from '@/components/SiteFooter.vue'
 </script>
 
 <template>
-  <ThemeToggle />
+  <SiteHeader />
   <RouterView />
+  <SiteFooter />
 </template>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+</style>
